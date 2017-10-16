@@ -73,7 +73,12 @@ mod imp {
     pub fn build_or_link_grpc(cc: &mut Build) {
         prepare_grpc();
 
-        let dst = Config::new("grpc").build_target("grpc").build();
+        let mut config = Config::new("grpc");
+        // Work around https://github.com/alexcrichton/cmake-rs/issues/38
+        if env::var("TARGET").unwrap_or_default() == "x86_64-apple-darwin" {
+            config.target("x86_64-apple-darwin11");
+        }
+        let dst = config.build_target("grpc").build();
 
         let mut zlib = "z";
         let build_dir = format!("{}/build", dst.display());
