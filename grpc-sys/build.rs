@@ -73,7 +73,7 @@ mod imp {
     pub fn build_or_link_grpc(cc: &mut Build) {
         prepare_grpc();
 
-        let dst = Config::new("grpc").build_target("grpc").build();
+        let dst = Config::new("grpc").build_target("grpc").uses_cxx11().build();
 
         let mut zlib = "z";
         let build_dir = format!("{}/build", dst.display());

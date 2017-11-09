@@ -39,7 +39,7 @@ libc = "0.2"
 
 [build-dependencies]
 cc = "1.0"
-cmake = "0.1"
+cmake = { git = "https://github.com/alexcrichton/cmake-rs", rev = "bbea5c9f4a95967dfbc255d9393e2f5fb3a693a7" }
 pkg-config = "0.3"
 
 [features]
